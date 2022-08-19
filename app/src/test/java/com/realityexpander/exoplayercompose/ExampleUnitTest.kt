@@ -1,4 +1,4 @@
-package com.yusufcakmak.exoplayercompose
+package com.realityexpander.exoplayercompose
 
 import org.junit.Test
 

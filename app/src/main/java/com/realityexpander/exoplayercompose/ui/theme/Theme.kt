@@ -1,4 +1,4 @@
-package com.yusufcakmak.exoplayercompose.ui.theme
+package com.realityexpander.exoplayercompose.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

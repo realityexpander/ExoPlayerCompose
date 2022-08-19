@@ -1,4 +1,4 @@
-package com.yusufcakmak.exoplayercompose.screens
+package com.realityexpander.exoplayercompose.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,14 +13,19 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.android.exoplayer2.MediaItem
-import com.yusufcakmak.exoplayercompose.provideExoPlayer
-import com.yusufcakmak.exoplayercompose.ui.theme.ExoPlayerComposeTheme
+import com.realityexpander.exoplayercompose.provideExoPlayer
+import com.realityexpander.exoplayercompose.ui.theme.ExoPlayerComposeTheme
 
 @Composable
 fun RadioScreen() {
     val context = LocalContext.current
     val mediaItem = MediaItem.fromUri("http://kastos.cdnstream.com/1345_32")
-    val player = provideExoPlayer(context = context, mediaItem = mediaItem)
+    val player = provideExoPlayer(
+        context = context,
+        mediaItem = mediaItem
+    )
+
+    player.seekForwardIncrement
 
     LaunchedEffect(player) {
         player.prepare()
@@ -53,6 +58,29 @@ fun RadioScreen() {
                 }
             ) {
                 Text(text = "Stop")
+            }
+
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 32.dp, start = 32.dp, end = 32.dp),
+                onClick = {
+                    //player.playWhenReady = false
+                    player.seekForward()
+                }
+            ) {
+                Text(text = "seek fwd")
+            }
+
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 32.dp, start = 32.dp, end = 32.dp),
+                onClick = {
+                    player.seekBack()
+                }
+            ) {
+                Text(text = "seek back")
             }
         }
     }

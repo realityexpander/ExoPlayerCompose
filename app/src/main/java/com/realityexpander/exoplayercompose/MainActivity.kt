@@ -1,4 +1,4 @@
-package com.yusufcakmak.exoplayercompose
+package com.realityexpander.exoplayercompose
 
 import android.content.Context
 import android.os.Bundle
@@ -12,11 +12,38 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.LivePlaybackSpeedControl
 import com.google.android.exoplayer2.MediaItem
-import com.yusufcakmak.exoplayercompose.screens.MainScreen
-import com.yusufcakmak.exoplayercompose.screens.RadioScreen
-import com.yusufcakmak.exoplayercompose.screens.VideoScreen
-import com.yusufcakmak.exoplayercompose.ui.theme.ExoPlayerComposeTheme
+import com.realityexpander.exoplayercompose.screens.MainScreen
+import com.realityexpander.exoplayercompose.screens.RadioScreen
+import com.realityexpander.exoplayercompose.screens.VideoScreen
+import com.realityexpander.exoplayercompose.ui.theme.ExoPlayerComposeTheme
+
+val livePlaybackSpeedControl = object: LivePlaybackSpeedControl {
+    override fun setLiveConfiguration(liveConfiguration: MediaItem.LiveConfiguration) {
+        println("setLiveConfiguration: $liveConfiguration")
+    }
+
+    override fun setTargetLiveOffsetOverrideUs(liveOffsetUs: Long) {
+        println("setTargetLiveOffsetOverrideUs $liveOffsetUs")
+    }
+
+    override fun notifyRebuffer() {
+        println("notifyRebuffer")
+    }
+
+    override fun getAdjustedPlaybackSpeed(liveOffsetUs: Long, bufferedDurationUs: Long): Float {
+        println("getAdjustedPlaybackSpeed $liveOffsetUs $bufferedDurationUs")
+
+        return 2.0f
+    }
+
+    override fun getTargetLiveOffsetUs(): Long {
+        println("getTargetLiveOffsetUs")
+
+        return 0L
+    }
+}
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +78,12 @@ fun Navigation(navController: NavHostController) {
 }
 
 fun provideExoPlayer(context : Context, mediaItem: MediaItem): ExoPlayer {
-    val player = ExoPlayer.Builder(context).build()
+    val player = ExoPlayer.Builder(context)
+        .setSeekForwardIncrementMs(5000)
+        .setSeekBackIncrementMs(5000)
+        .setLivePlaybackSpeedControl(livePlaybackSpeedControl)
+        .build()
+
     player.setMediaItem(mediaItem)
     return player
 }

@@ -1,4 +1,4 @@
-package com.yusufcakmak.exoplayercompose.screens
+package com.realityexpander.exoplayercompose.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.yusufcakmak.exoplayercompose.ui.theme.ExoPlayerComposeTheme
+import com.realityexpander.exoplayercompose.ui.theme.ExoPlayerComposeTheme
 
 @Composable
 fun MainScreen(navController : NavController) {

@@ -1,7 +1,6 @@
-package com.yusufcakmak.exoplayercompose.screens
+package com.realityexpander.exoplayercompose.screens
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -9,7 +8,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.ui.PlayerView
-import com.yusufcakmak.exoplayercompose.provideExoPlayer
+import com.realityexpander.exoplayercompose.provideExoPlayer
 
 @Composable
 fun VideoScreen() {

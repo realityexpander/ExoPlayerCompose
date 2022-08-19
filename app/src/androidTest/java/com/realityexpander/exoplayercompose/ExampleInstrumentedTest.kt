@@ -1,4 +1,4 @@
-package com.yusufcakmak.exoplayercompose
+package com.realityexpander.exoplayercompose
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
